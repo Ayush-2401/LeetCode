@@ -14,6 +14,7 @@ class Solution {
                         if(emails[i].charAt(k) == '@'){
                             j = k;
                             local = false;
+                            break;
                         }
                     }
                 }
