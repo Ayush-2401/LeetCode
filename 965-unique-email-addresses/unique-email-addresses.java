@@ -4,22 +4,30 @@ class Solution {
         
         for(int i = 0; i<emails.length; i++){
             boolean local = true;
+            boolean ignore = false;
             String email = "";
             for(int j = 0; j<emails[i].length(); j++){
+
+                if(emails[i].charAt(j) == '@'){
+                    local = false;
+                    ignore = false;
+                    email += emails[i].charAt(j);
+                    continue;
+                }
+                if(emails[i].charAt(j) == '+' && local){
+                    ignore = true;
+                    continue;
+                }
+                if(ignore){
+                    continue;
+                }
                 if(emails[i].charAt(j) == '.' && local){
                     continue;
                 }
-                else if(emails[i].charAt(j) == '+'){
-                    for(int k = j; k<emails[i].length(); k++){
-                        if(emails[i].charAt(k) == '@'){
-                            j = k;
-                            local = false;
-                            break;
-                        }
-                    }
-                }
-                else if(emails[i].charAt(j) == '@')
-                local = false;
+                
+                
+                
+               
                 email += emails[i].charAt(j);
             }
             
